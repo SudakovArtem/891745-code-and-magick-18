@@ -16,8 +16,8 @@ var CURRENT_USER = 'Вы';
 var CLOUD_HEADER = 'Ура вы победили!';
 var CLOUD_HEADER_LIST = 'Список результатов:';
 
-var getRandomLightness = function (h, s, l) {
-  l = (Math.floor(Math.random() * 100));
+var getRandomLightness = function (h, s) {
+  var l = (Math.floor(Math.random() * 100));
   return 'hsl(' + h + ', ' + s + '%, ' + l + '%)';
 };
 
@@ -62,7 +62,7 @@ var renderGraph = function (ctx, names, times) {
     if (i === currentUser) {
       ctx.fillStyle = 'rgba(255, 0, 0, 1)';
     } else {
-      ctx.fillStyle = getRandomLightness(250, 100, 50);
+      ctx.fillStyle = getRandomLightness(250, 100);
     }
     ctx.fillRect(CLOUD_X_GAP + (GAP + BAR_WIDTH) * i, CLOUD_Y_GAP - (BAR_HEIGHT * times[i]) / maxTime, BAR_WIDTH, (BAR_HEIGHT * times[i]) / maxTime);
     ctx.fillStyle = '#000';
