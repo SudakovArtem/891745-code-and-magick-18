@@ -10,7 +10,7 @@
     return new XMLHttpRequest();
   };
 
-  var getXhrListener = function (xhr, onSuccess, onError) {
+  var getXhrListener = function (xhr, onLoad, onError) {
     xhr.responseType = 'json';
 
     var LOAD_ERROR_MESSAGE = 'Статус ответа: ' + xhr.status + ' ' + xhr.statusText;
@@ -18,7 +18,7 @@
     var TIMEOUT_ERROR_MESSAGE = 'Запрос не успел выполниться за ' + xhr.timeout + 'мс';
     xhr.addEventListener('load', function () {
       if (xhr.status === OK_STATUS) {
-        onSuccess(xhr.response);
+        onLoad(xhr.response);
       } else {
         onError(LOAD_ERROR_MESSAGE);
       }
@@ -33,19 +33,19 @@
     xhr.timeout = TIMEOUT_VALUE;
   };
 
-  var load = function (onSuccess, onError) {
+  var load = function (onLoad, onError) {
     var xhr = getXhr();
     var URL = GET_URL;
-    getXhrListener(xhr, onSuccess, onError);
+    getXhrListener(xhr, onLoad, onError);
     xhr.open('GET', URL);
     xhr.send();
   };
 
-  var upload = function (data, onSuccess, onError) {
+  var upload = function (data, onLoad, onError) {
     var xhr = getXhr();
     var URL = POST_URL;
 
-    getXhrListener(xhr, onSuccess, onError);
+    getXhrListener(xhr, onLoad, onError);
     xhr.open('POST', URL);
     xhr.send(data);
   };
