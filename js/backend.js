@@ -13,20 +13,20 @@
   var getXhrListener = function (xhr, onLoad, onError) {
     xhr.responseType = 'json';
 
-    var LOAD_ERROR_MESSAGE = 'Статус ответа: ' + xhr.status + ' ' + xhr.statusText;
-    var ERROR_MESSAGE = 'Произошла ошибка соединения';
-    var TIMEOUT_ERROR_MESSAGE = 'Запрос не успел выполниться за ' + xhr.timeout + 'мс';
     xhr.addEventListener('load', function () {
       if (xhr.status === OK_STATUS) {
         onLoad(xhr.response);
       } else {
+        var LOAD_ERROR_MESSAGE = 'Статус ответа: ' + xhr.status + ' ' + xhr.statusText;
         onError(LOAD_ERROR_MESSAGE);
       }
     });
     xhr.addEventListener('error', function () {
+      var ERROR_MESSAGE = 'Произошла ошибка соединения';
       onError(ERROR_MESSAGE);
     });
     xhr.addEventListener('timeout', function () {
+      var TIMEOUT_ERROR_MESSAGE = 'Запрос не успел выполниться за ' + xhr.timeout + 'мс';
       onError(TIMEOUT_ERROR_MESSAGE);
     });
 
