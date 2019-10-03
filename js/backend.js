@@ -17,8 +17,8 @@
       if (xhr.status === OK_STATUS) {
         onLoad(xhr.response);
       } else {
-        var LOAD_ERROR_MESSAGE = 'Статус ответа: ' + xhr.status + ' ' + xhr.statusText;
-        onError(LOAD_ERROR_MESSAGE);
+        var loadErrorMessage = 'Статус ответа: ' + xhr.status + ' ' + xhr.statusText;
+        onError(loadErrorMessage);
       }
     });
     xhr.addEventListener('error', function () {
